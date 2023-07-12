@@ -87,7 +87,7 @@ while no == -1:
   yes = 0
   no = 0
   speed = speed + -4
-  slowprint("*...")
+  slowprint("< . . . >")
   time.sleep(2)
   speed = speed + 4
   slowprint("<..Are you sure?..>")
@@ -334,7 +334,7 @@ while x == 1:
 
       elif vv == "i":
         print('<You have ', end='')
-        slowprint(inv)
+        print(inv)
 
       elif vv == "b" or key == -1:
         slowprint("<You moved away from the counter...>")
@@ -375,7 +375,7 @@ while x == 1:
 
   elif cc == "i":
     print('<You have ', end='')
-    slowprint(inv)
+    print(inv)
 
   elif cc == "g counter" and key == -1:
     slowprint("<Nothing is on the counter>")
