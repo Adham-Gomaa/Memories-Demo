@@ -39,6 +39,7 @@ speed = 20
 q = 0
 yes = 0
 no = 0
+enteredgarage = 0
 money = "100 $"
 mem1 = 0
 mem2 = 0
@@ -323,8 +324,7 @@ while x == 1:
         slowprint("} G 'destination' - move to spot.")
         slowprint("} U 'item' on 'item' - use an item.")
         slowprint("} I - to check your inventory.")
-        slowprint("} B - to go back (Available in certain scene)")
-        print("")
+        slowprint("} B - to go back.")
 
     elif cc == "p dog" or cc == "p tv" or cc == "p counter" or cc == "p garage door":
         slowprint("<You can't pick that up.>")
@@ -336,13 +336,53 @@ while x == 1:
         print('<You have ', end='')
         print(inv)
 
-    elif cc == "u garage door key on garage door" and gkey == 1:
+    elif cc == "u garage door key on garage door" and gkey == 1 and enteredgarage == 0:
+        enteredgarage = 1
         slowprint("<You enter your garage>")
+        inv.remove("Garage door key")
         time.sleep(2)
-        break
+        slowprint("<Your car sits in your garage . . . Rust builds up on its sides . . . covering its color. . >")
+        time.sleep(1)
+        slowprint("<You move towards your vehicle>")
+        time.sleep(2)
+        if ckey == 1:
+            slowprint("<Using your car keys , you open you car door.")
+            inv.append("Car keys")
+            time.sleep(1)
+            slowprint("<Its seats covered with blankets ,hiding its shameful look...>")
+            time.sleep(1)
+            slowprint("<You start the car and exit your house ,heading towards your local store>")
+            break
+        if ckey == 0:
+            slowprint("<You try to open your vehicle . . . realising you don't have the keys ,you head back searching "
+                      "for them...>")
 
     elif cc == "l dog" or cc == "g dog":
         slowprint("<It is your dog . . . it could use some food.>")
+
+    elif cc == "g garage door":
+        if gkey == 1 and enteredgarage == 1:
+            slowprint("<You enter your garage>")
+            time.sleep(1)
+            slowprint("<You move towards your vehicle>")
+            time.sleep(2)
+            if ckey == 1:
+                inv.remove("Car keys")
+                gkey = 0
+                ckey = 0
+                slowprint("<Using your car keys , you open you car door.")
+                inv.append("Car keys")
+                time.sleep(1)
+                slowprint("<Its seats covered with blankets ,hiding its shameful look...>")
+                time.sleep(1)
+                slowprint("<You start the car and exit your house ,heading towards your local store>")
+                break
+            if ckey == 0:
+                slowprint(
+                    "<You try to open your vehicle . . . realising you don't have the keys ,you head back searching "
+                    "for them...>")
+        if gkey == 1 and enteredgarage == 0 or gkey == 0 and enteredgarage == 0:
+            slowprint("<Your garage door . . . You locked it.>")
 
     elif cc == "l garage door":
         slowprint("<Your garage door . . . you locked it ,can you find the keys?>")
@@ -381,22 +421,22 @@ while x == 1:
             elif xx == "p garage door key" and gkey == 0:
                 gkey = 1
                 slowprint('<You pickup your "Garage door key">')
-                time.sleep(1)
+                time.sleep(.5)
                 print("")
                 print("                ", end="")
                 slowprint('# "Garage door key" added to inventory #')
-                inv.insert(1, "Garage door key")
+                inv.append("Garage door key")
             elif xx == "p car keys" and ckey == 0:
                 ckey = 1
                 slowprint('<You pickup your "Car keys">')
-                time.sleep(1)
+                time.sleep(.5)
                 print("")
                 print("                  ", end="")
                 slowprint('# "Car key" added to inventory #')
-                inv.insert(1, "Car keys")
+                inv.append("Car keys")
             elif xx == "i":
                 print("You have ", end="")
-                print(list)
+                print(inv)
             elif xx == "help":
                 print("")
                 slowprint("} Money - Check your money.")
@@ -415,6 +455,7 @@ while x == 1:
     else:
         slowprint("<Invalid Action or Unknown Item>")
 
+time.sleep(2)
 print("")
 print("                             ", end="")
 slowprint("Thank you for playing my demo")
