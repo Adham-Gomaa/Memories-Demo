@@ -358,40 +358,45 @@ while x == 1:
         slowprint("<Your tv . . . Nothing special these days...>")
 
     elif cc == "g counter":
-        if gkey == "0" and ckey == "0":
-            slowprint('<You move towards your counter . . . Your "Garage door key" and "Car keys" sit on top it')
-        elif gkey == "1" and ckey == "0":
-            slowprint('<You move towards your counter . . . Your "Car keys" sit on top it')
-        elif gkey == "0" and ckey == "1":
-            slowprint('<You move towards your counter . . . Your "Garage door key" sit on top it')
+        if gkey == 0 and ckey == 0:
+            slowprint('<You move towards your counter . . . Your "Garage door key" and "Car keys" sit on top it.>')
+        elif gkey == 1 and ckey == 0:
+            slowprint('<You move towards your counter . . . Your "Car keys" sits on top it.>')
+        elif gkey == 0 and ckey == 1:
+            slowprint('<You move towards your counter . . . Your "Garage door key" sits on top it.>')
+        elif gkey == 1 and ckey == 1:
+            slowprint('<You move towards your counter . . . Nothing sits on top it.>')
         while x == 1:
             print("")
             disable.stop()
             xx = input("> ").lower()
             disable.start()
-            if xx == "l garage door key" and gkey == "0":
-                slowprint("<Your garage door key . . . could be useful to open the the door.>")
-            elif xx == "l car keys" and ckey == "0":
+            if xx == "l garage door key" and gkey == 0:
+                slowprint("<Your garage door key . . . could be useful to open that door.>")
+            elif xx == "l car keys" and ckey == 0:
                 slowprint('<Your car keys . . . "Would need that to get dog food", You think..')
             elif xx == "b":
                 slowprint("<You move away from the counter..>")
                 break
             elif xx == "p garage door key" and gkey == 0:
-                gkey = "1"
+                gkey = 1
                 slowprint('<You pickup your "Garage door key">')
                 time.sleep(1)
-                print("                ")
+                print("")
+                print("                ", end="")
                 slowprint('# "Garage door key" added to inventory #')
                 inv.insert(1, "Garage door key")
             elif xx == "p car keys" and ckey == 0:
-                ckey = "1"
+                ckey = 1
                 slowprint('<You pickup your "Car keys">')
                 time.sleep(1)
-                print("                  ")
+                print("")
+                print("                  ", end="")
                 slowprint('# "Car key" added to inventory #')
                 inv.insert(1, "Car keys")
             elif xx == "i":
-                print(inv)
+                print("You have ", end="")
+                print(list)
             elif xx == "help":
                 print("")
                 slowprint("} Money - Check your money.")
@@ -410,6 +415,7 @@ while x == 1:
     else:
         slowprint("<Invalid Action or Unknown Item>")
 
+print("")
 print("                             ", end="")
 slowprint("Thank you for playing my demo")
 time.sleep(3)
