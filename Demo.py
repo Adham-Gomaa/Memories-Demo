@@ -104,7 +104,7 @@ print("")
 print("                                ", end="")
 speed = speed - 10
 slowprint("# Welcome to Memories... #")
-speed = speed - 10
+speed = speed + 10
 time.sleep(3)
 print("")
 print("")
