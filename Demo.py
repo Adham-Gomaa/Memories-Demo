@@ -32,29 +32,26 @@ disable = keyboardDisable()
 df = 0
 gkey = 0
 ckey = 0
-# CONDITIONS
-x = 1
 # GAME STATS
 speed = 20
 q = 0
 yes = 0
 no = 0
 enteredgarage = 0
-money = "100 $"
+money = "0 $"
 mem1 = 0
 mem2 = 0
 mem3 = 0
-inv = [""]
+inv = []
 
 print("                                 # Type 'help' for list of commands #")
-while x == 1:
+while True:
     print("")
     disable.stop()
     t = input("> ").lower()
     disable.start()
     if t == "help":
         print("")
-        slowprint("} M - Check your money.")
         slowprint("} Y - Yes.")
         slowprint("} N - No.")
         slowprint("} L 'item' - to look at item.")
@@ -74,7 +71,7 @@ while x == 1:
         slowprint("<Check 'help' commands first...>")
         speed = speed - 2
 
-while x == 1:
+while True:
     print("")
     disable.stop()
     r = input("> ").lower()
@@ -107,76 +104,8 @@ speed = speed - 10
 slowprint("# Welcome to Memories... #")
 speed = speed + 10
 time.sleep(3)
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
+for repeat in range(100):
+    print("")
 time.sleep(3)
 print('                                   ', end='')
 slowprint("# Memory Unlocked #")
@@ -185,15 +114,18 @@ time.sleep(1)
 print('                               ', end='')
 slowprint("# Press 'M' to view Memory #")
 
-while x == 1:
+while True:
     print("")
     disable.stop()
     z = input("> ").lower()
     disable.start()
     if z == "m":
-        slowprint("""~ Memory 1 - UNLOCKED ~
- ~ Memory 2 - LOCKED ~
- ~ Memory 3 - LOCKED ~""")
+        print("                                ", end="")
+        slowprint("~ Memory 1 - UNLOCKED ~")
+        print("                                 ", end="")
+        slowprint("~ Memory 2 - LOCKED ~")
+        print("                                 ", end="")
+        slowprint("~ Memory 3 - LOCKED ~")
         print('                         ', end='')
         slowprint("# Press 1 , 2 , 3 to choose memories #")
         q = q - 1
@@ -203,7 +135,7 @@ while x == 1:
     else:
         slowprint("<Press 'M' to view Memory>")
 
-while x == 1:
+while True:
     print("")
     disable.stop()
     pp = input("> ")
@@ -233,83 +165,24 @@ while x == 1:
         print('                         ', end='')
         slowprint("# Press 1 , 2 , 3 to choose memories #")
 
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
-print("")
+for repeat in range(100):
+    print("")
 time.sleep(2)
 speed = speed + 2
-slowprint("<You are at home....Your dog needs food.>")
+slowprint("<You wake up at home>")
 time.sleep(1)
+slowprint("<You feel a strong smell of rotten food.>")
+time.sleep(1)
+slowprint("<Your walls are damp . . . Your lucky your home still stands.>")
+time.sleep(1)
+slowprint("<You get out of bed to greet your dog . . . Its cowering in pain>")
+time.sleep(1)
+slowprint("<Its bowl is empty . . . You should get it some food.>")
+time.sleep(1)
+print("")
 slowprint("<You see a 'TV', 'counter', 'dog' and 'garage door'>")
 
-while x == 1:
+while True:
     disable.stop()
     print("")
     cc = input("> ").lower()
@@ -334,11 +207,13 @@ while x == 1:
 
     elif cc == "i":
         print('<You have ', end='')
-        print(inv)
+        slowprint(inv)
 
     elif cc == "u garage door key on garage door" and gkey == 1 and enteredgarage == 0:
         enteredgarage = 1
-        slowprint("<You enter your garage>")
+        slowprint('<You use your "Garage door key" to enter your garage . .>')
+        time.sleep(1)
+        slowprint("<Entering the garage . . . You see your car.>")
         inv.remove("Garage door key")
         time.sleep(2)
         slowprint("<Your car sits in your garage . . . Rust builds up on its sides . . . covering its color. . >")
@@ -357,8 +232,13 @@ while x == 1:
             slowprint("<You try to open your vehicle . . . realising you don't have the keys ,you head back searching "
                       "for them...>")
 
-    elif cc == "l dog" or cc == "g dog":
+    elif cc == "l dog":
         slowprint("<It is your dog . . . it could use some food.>")
+
+    elif cc == "g dog":
+        slowprint("<You move towards your dog . . . It whimpers in pain . . .>")
+        time.sleep(.5)
+        slowprint("<You should get it some food . . . You pet it and leave>")
 
     elif cc == "g garage door":
         if gkey == 1 and enteredgarage == 1:
@@ -370,32 +250,40 @@ while x == 1:
                 inv.remove("Car keys")
                 gkey = 0
                 ckey = 0
-                slowprint("<Using your car keys , you open you car door.")
+                slowprint("<Using your car keys , you open you car door.>")
                 inv.append("Car keys")
                 time.sleep(1)
                 slowprint("<Its seats covered with blankets ,hiding its shameful look...>")
                 time.sleep(1)
                 slowprint("<You start the car and exit your house ,heading towards your local store>")
+                time.sleep(2)
+                slowprint("<On your way . . You find some money in the cars drawer . . . You take it . . Realising "
+                          "you don't have any.>")
+                time.sleep(1)
+                print("                          ", end="")
+                money = "100 $"
+                slowprint("# Money Updated #")
+                time.sleep(.5)
+                print("                 ",  end="")
+                slowprint('# You can type "M" to check your money #')
                 break
             if ckey == 0:
                 slowprint(
                     "<You try to open your vehicle . . . realising you don't have the keys ,you head back searching "
                     "for them...>")
         if gkey == 1 and enteredgarage == 0 or gkey == 0 and enteredgarage == 0:
-            slowprint("<Your garage door . . . You locked it.>")
+            slowprint("<You move towards your garage door . .  grabbing the handle , it doesnt budge . .>")
+            time.sleep(1)
+            slowprint("Its locked . . maybe you can find the key . . .")
 
     elif cc == "l garage door":
-        slowprint("<Your garage door . . . you locked it ,can you find the keys?>")
-
-    elif cc == "m":
-        print("You have ", end="")
-        slowprint(money)
+        slowprint("<Your garage door . . . you should go get some dog food . .>")
 
     elif cc == "l tv":
         slowprint("<Your tv . . . Nothing special these days...>")
 
     elif cc == "g tv":
-        slowprint("<Your tv . . . Nothing special these days...>")
+        slowprint("<You move towards your TV . . . its old . . a miracle that it turns on . .>")
 
     elif cc == "g counter":
         if gkey == 0 and ckey == 0:
@@ -406,7 +294,7 @@ while x == 1:
             slowprint('<You move towards your counter . . . Your "Garage door key" sits on top it.>')
         elif gkey == 1 and ckey == 1:
             slowprint('<You move towards your counter . . . Nothing sits on top it.>')
-        while x == 1:
+        while True:
             print("")
             disable.stop()
             xx = input("> ").lower()
@@ -435,8 +323,8 @@ while x == 1:
                 slowprint('# "Car key" added to inventory #')
                 inv.append("Car keys")
             elif xx == "i":
-                print("You have ", end="")
-                print(inv)
+                print("<You have ", end="")
+                slowprint(inv)
             elif xx == "help":
                 print("")
                 slowprint("} Money - Check your money.")
