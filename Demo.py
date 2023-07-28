@@ -2,6 +2,38 @@ import sys
 import msvcrt
 import time
 
+# INV
+df = 0
+gkey = 0
+ckey = 0
+# GAME STATS
+speed = 20
+q = 0
+yes = 0
+no = 0
+enteredgarage = 0
+money = "0 $"
+mem1 = 0
+mem2 = 0
+mem3 = 0
+inv = []
+
+
+def cmd():
+    print("")
+    slowprint("} Y - Yes.")
+    slowprint("} N - No.")
+    slowprint("} L 'item' - to look at item.")
+    slowprint("} P 'item' - to pick-up an item.")
+    slowprint("} G 'destination' - move to spot.")
+    slowprint("} U 'item' on 'item' - use an item.")
+    slowprint("} I - to check your inventory.")
+    slowprint("} B - to go back")
+
+
+def inventory():
+    slowprint("<You have " + str(inv) + ">")
+
 
 def slowprint(s):
     for c in s + '\n':
@@ -27,23 +59,6 @@ class keyboardDisable:
 
 
 disable = keyboardDisable()
-
-# INV
-df = 0
-gkey = 0
-ckey = 0
-# GAME STATS
-speed = 20
-q = 0
-yes = 0
-no = 0
-enteredgarage = 0
-money = "0 $"
-mem1 = 0
-mem2 = 0
-mem3 = 0
-inv = []
-
 print("                                 # Type 'help' for list of commands #")
 while True:
     print("")
@@ -51,15 +66,7 @@ while True:
     t = input("> ").lower()
     disable.start()
     if t == "help":
-        print("")
-        slowprint("} Y - Yes.")
-        slowprint("} N - No.")
-        slowprint("} L 'item' - to look at item.")
-        slowprint("} P 'item' - to pick-up an item.")
-        slowprint("} G 'destination' - move to spot.")
-        slowprint("} U 'item' on 'item' - use an item.")
-        slowprint("} I - to check your inventory.")
-        slowprint("} B - to go back")
+        cmd()
         time.sleep(3)
         print("")
         speed = speed - 1
@@ -164,7 +171,6 @@ while True:
     else:
         print('                         ', end='')
         slowprint("# Press 1 , 2 , 3 to choose memories #")
-
 for repeat in range(100):
     print("")
 time.sleep(2)
@@ -188,26 +194,19 @@ while True:
     cc = input("> ").lower()
     disable.start()
     if cc == "help":
-        print("")
-        slowprint("} Money - Check your money.")
-        slowprint("} Y - Yes.")
-        slowprint("} N - No.")
-        slowprint("} L 'item' - to look at item.")
-        slowprint("} P 'item' - to pick-up an item.")
-        slowprint("} G 'destination' - move to spot.")
-        slowprint("} U 'item' on 'item' - use an item.")
-        slowprint("} I - to check your inventory.")
-        slowprint("} B - to go back.")
+        cmd()
 
     elif cc == "p dog" or cc == "p tv" or cc == "p counter" or cc == "p garage door":
         slowprint("<You can't pick that up.>")
 
     elif cc == "l counter":
-        slowprint("<You look at the counter . . . Something shiny sits on it>")
+        if ckey == 1 or gkey == 1:
+            slowprint("<You look at the counter . . . Something shiny sits on it>")
+        else:
+            slowprint("<You look at the counter . . . Nothing seems on it..>")
 
     elif cc == "i":
-        print('<You have ', end='')
-        slowprint(inv)
+        inventory()
 
     elif cc == "u garage door key on garage door" and gkey == 1 and enteredgarage == 0:
         enteredgarage = 1
@@ -261,10 +260,10 @@ while True:
                           "you don't have any.>")
                 time.sleep(1)
                 print("                          ", end="")
-                money = "100 $"
                 slowprint("# Money Updated #")
+                money = "100 $"
                 time.sleep(.5)
-                print("                 ",  end="")
+                print("                 ", end="")
                 slowprint('# You can type "M" to check your money #')
                 break
             if ckey == 0:
@@ -323,20 +322,9 @@ while True:
                 slowprint('# "Car key" added to inventory #')
                 inv.append("Car keys")
             elif xx == "i":
-                print("<You have ", end="")
-                slowprint(inv)
+                inventory()
             elif xx == "help":
-                print("")
-                slowprint("} Money - Check your money.")
-                slowprint("} Y - Yes.")
-                slowprint("} N - No.")
-                slowprint("} L 'item' - to look at item.")
-                slowprint("} P 'item' - to pick-up an item.")
-                slowprint("} G 'destination' - move to spot.")
-                slowprint("} U 'item' on 'item' - use an item.")
-                slowprint("} I - to check your inventory.")
-                slowprint("} B - to go back (Available in certain scene)")
-                print("")
+                cmd()
             else:
                 slowprint("<Invalid Action or Unknown Item>")
                 print("")
