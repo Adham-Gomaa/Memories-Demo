@@ -42,7 +42,57 @@ no = 0
 mem1 = 0
 mem2 = 0
 mem3 = 0
+memories_finished = 0
 inv = []
+
+
+# ----------IMPORTANT-----------
+def save_game_check():
+    global mem1, mem2, mem3, memories_finished
+    slowprint("<Have you experienced this game before?>")
+    while True:
+        save_answer = input("> ").lower()
+        if save_answer == "y":
+            slowprint("<Which memory did you complete? (Y/N)>")
+            memory1_save = input(">Memory 1: ")
+            if memory1_save == "y":
+                mem1 = 1
+                memories_finished = memories_finished + 1
+            if memory1_save == "n":
+                slowprint("<. . .>")
+                time.sleep(3)
+                slowprint("<Why do everyone lie. . .>")
+                time.sleep(4)
+                tutorial()
+                break
+            memory2_save = input(">Memory 2: ")
+            if memory2_save == "y":
+                memories_finished = memories_finished + 1
+                mem2 = 1
+            if memory2_save == "n":
+                break
+            memory3_save = input(">Memory 3: ")
+            if memory3_save == "y":
+                memories_finished = memories_finished + 1
+                mem3 = 1
+                slowprint("<You have finished the game. . .Do you want to repeat the experience?>")
+                repeat_memories = input("> ")
+                if repeat_memories == "y":
+                    slowprint("<Alright . . .lets go again. .")
+                    break
+                if repeat_memories == "n":
+                    slowprint("<Alright. . .See you later then..>")
+                    time.sleep(3)
+                    exit()
+            if memory3_save == "n":
+                break
+        if save_answer == "n":
+            slowprint("<Well then. . .Welcome. . .>")
+            time.sleep(3)
+            tutorial()
+            break
+        else:
+            slowprint("<This is a yes or no question. . .Reply with (Y/N)>")
 
 
 def demo_end():
@@ -463,6 +513,7 @@ def memory3():
     slowprint("Work in progress")
 
 
+# ----------IMPORTANT-----------
 # Only function, rest are chain reactions!!!
-tutorial()
+save_game_check()
 memories()
